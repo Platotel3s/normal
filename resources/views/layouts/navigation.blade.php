@@ -1,0 +1,29 @@
+<div class="d-flex flex-column align-items-center justify-content-between h-100 py-4">
+    <img src="{{ asset('assets/habibi.png') }}" alt="User Image" class="rounded-circle shadow" style="width: 100px; height: auto;">
+    <div class="card shadow p-2">
+        {{ Auth::user()->name }}
+    </div>
+    <div class="d-flex flex-column w-100 px-3 gap-3 mt-4">
+        <a href="{{ route('create.buku') }}" class="btn btn-info text-white text-start shadow-sm">
+            <i class="fas fa-plus me-2"></i> Tambah Buku
+        </a>
+        <a href="{{ route('daftar.buku') }}" class="btn btn-info text-white text-start shadow-sm">
+            <i class="fas fa-home me-2"></i> Beranda
+        </a>
+        <a href="{{ route('daftar.author') }}" class="btn btn-info text-white text-start shadow-sm">
+            <i class="fas fa-user me-2"></i> Penulis
+        </a>
+        <a href="{{ route('daftar.years') }}" class="btn btn-info text-white text-start shadow-sm">
+            <i class="fas fa-calendar-alt me-2"></i> Tahun Rilis
+        </a>
+        <a href="{{ route('daftar.penerbit') }}" class="btn btn-info text-white text-start shadow-sm">
+            <i class="fas fa-building me-2"></i> Penerbit
+        </a>
+    </div>
+    <form action="{{ route('logout') }}" method="POST" class="w-100 px-3 mt-4">
+        @csrf
+        <button type="submit" class="btn btn-danger w-100 py-2 shadow-sm">
+            <i class="fas fa-sign-out-alt me-2"></i> Keluar
+        </button>
+    </form>
+</div>

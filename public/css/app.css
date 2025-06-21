@@ -1,0 +1,9 @@
+nav{
+    background-color: gray;
+    height: 100vh;
+}
+main{
+    background-color: white;
+    height: 100vh;
+    overflow-y: auto;
+}
