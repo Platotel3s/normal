@@ -18,7 +18,7 @@
                             <select name="author_id" id="author_id" class="form-control">
                                 <option value="" disabled selected>--- Pilih Penulis --</option>
                                 @foreach ($authors as $author)
-                                    <option value="{{ $author->id }}">{{ $author->namaPenulis }}</option>
+                                    <option value="{{ $author->id }}" {{ $author->id == $bukus->author_id ? 'selected' : '' }}>{{ $author->namaPenulis }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -27,7 +27,7 @@
                             <select name="penerbit_id" id="penerbit_id" class="form-control">
                                 <option value="" disabled selected>-- Pilih Penerbit --</option>
                                 @foreach ($penerbits as $penerbit)
-                                    <option value="{{ $penerbit->id }}">{{ $penerbit->namaPenerbit }}</option>
+                                    <option value="{{ $penerbit->id }}" {{ $penerbit->id == $bukus->penerbit_id ? 'selected' : '' }}>{{ $penerbit->namaPenerbit }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -36,7 +36,16 @@
                             <select name="tahun_id" id="tahun_id" class="form-control">
                                 <option value="" disabled selected>-- Pilih Tahun Penerbit --</option>
                                 @foreach ($tahuns as $tahun)
-                                    <option value="{{ $tahun->id }}">{{ $tahun->tahun }}</option>
+                                    <option value="{{ $tahun->id }}" {{ $tahun->id == $bukus->tahun_id ? 'selected' : '' }}>{{ $tahun->tahun }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="genre_id" class="form-label">Genre Buku</label>
+                            <select name="genre_id" id="genre_id" class="form-control">
+                                <option value="" disabled selected>-- Pilih Genre --</option>
+                                @foreach ($gen as $genre)
+                                    <option value="{{ $genre->id }}" {{ $genre->id == $bukus->genre_id ? 'selected' : '' }}>{{ $genre->namaGenre }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -7,6 +7,7 @@ use App\Models\Buku;
 use App\Models\Author;
 use App\Models\Penerbit;
 use App\Models\Tahun;
+use App\Models\Genre;
 class BukuController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class BukuController extends Controller
      */
     public function index()
     {
-        $bukus=Buku::with(['author','penerbit','tahun'])->get();
+        $bukus=Buku::with(['author','penerbit','tahun','genre'])->get();
         return view('main.index',compact('bukus'));
     }
 
@@ -26,8 +27,9 @@ class BukuController extends Controller
         $authors=Author::all();
         $penerbits=Penerbit::all();
         $tahuns=Tahun::all();
+        $gen=Genre::all();
 
-        return view('main.create',compact(['authors','penerbits','tahuns']));
+        return view('main.create',compact(['authors','penerbits','tahuns','genres']));
     }
 
     /**
@@ -40,12 +42,14 @@ class BukuController extends Controller
             'author_id'=>'required|exists:authors,id',
             'penerbit_id'=>'required|exists:penerbits,id',
             'tahun_id'=>'required|exists:tahuns,id',
+            'genre_id'=>'required|exists:genres,id',
         ]);
         Buku::create([
             'judul'=>$request->judul,
             'author_id'=>$request->author_id,
             'penerbit_id'=>$request->penerbit_id,
             'tahun_id'=>$request->tahun_id,
+            'genre_id'=>$request->genre_id,
         ]);
         return redirect()->route('daftar.buku')->with('success','Berhasil input data');
     }
@@ -68,7 +72,8 @@ class BukuController extends Controller
         $authors=Author::all();
         $penerbits=Penerbit::all();
         $tahuns=Tahun::all();
-        return view('main.edit',compact(['bukus','authors','penerbits','tahuns']));
+        $gen=Genre::all();
+        return view('main.edit',compact(['bukus','authors','penerbits','tahuns','gen']));
     }
 
     /**
@@ -81,6 +86,7 @@ class BukuController extends Controller
             'author_id'=>'required|string',
             'penerbit_id'=>'required|string',
             'tahun_id'=>'required|integer',
+            'genre_id'=>'required|integer',
         ]);
         $bukus=Buku::findOrFail($id);
         $bukus->update($request->all());

@@ -39,6 +39,15 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="mb-3 p-2">
+                                <label for="genre_id" class="form-label">Tahun Penerbit</label>
+                                <select name="genre_id" id="genre_id" class="form-control" required>
+                                    <option value="" disabled selected>Pilih Genre</option>
+                                    @foreach ($gen as $genre)
+                                        <option value="{{ $genre->id }}">{{ $genre->namaGenre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="d-grid gap-2 d-md-flex">
                                 <button type="submit" class="btn btn-primary mb-3">Tambah</button>
                                 <button type="reset" class="btn btn-warning mb-3">Reset</button>

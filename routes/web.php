@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\YearsController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\GenreController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +43,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/penerbit/create',[PublisherController::class,'create'])->name('create.penerbit');
     Route::post('/penerbit/post',[PublisherController::class,'store'])->name('store.penerbit');
     Route::put('/penerbit/{id}/update',[PublisherController::class,'update'])->name('update.penerbit');
+
+    Route::get('/daftarGenre',[GenreController::class,'index'])->name('daftar.genre');
+    Route::get('/genre/{id}/edit',[GenreController::class,'edit'])->name('edit.genre');
+    Route::delete('/genre/{id}',[GenreController::class,'destroy'])->name('hapus.genre');
+    Route::get('/genre/create',[GenreController::class,'create'])->name('create.genre');
+    Route::post('/genre/post',[GenreController::class,'store'])->name('store.genre');
+    Route::put('/genre/{id}/update',[GenreController::class,'update'])->name('update.genre');
 });
 
 

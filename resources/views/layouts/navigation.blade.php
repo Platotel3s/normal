@@ -19,6 +19,9 @@
         <a href="{{ route('daftar.penerbit') }}" class="btn btn-info text-white text-start shadow-sm">
             <i class="fas fa-building me-2"></i> Penerbit
         </a>
+        <a href="{{ route('daftar.genre') }}" class="btn btn-info text-white text-start shadow-sm">
+            <i class="fas fa-book me-2"></i> Genre
+        </a>
     </div>
     <form action="{{ route('logout') }}" method="POST" class="w-100 px-3 mt-4">
         @csrf

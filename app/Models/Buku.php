@@ -11,7 +11,8 @@ class Buku extends Model
         'judul',
         'author_id',
         'penerbit_id',
-        'tahun_id'
+        'tahun_id',
+        'genre_id'
     ];
     public function author(){
         return $this->belongsTo(Author::class);
@@ -21,5 +22,8 @@ class Buku extends Model
     }
     public function tahun(){
         return $this->belongsTo(Tahun::class);
+    }
+    public function genre(){
+        return $this->belongsTo(Genre::class);
     }
 }

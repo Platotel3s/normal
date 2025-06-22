@@ -18,6 +18,7 @@
                                     <th>Penulis</th>
                                     <th>Penerbit</th>
                                     <th>Tahun terbit</th>
+                                    <th>Genre</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
@@ -27,6 +28,7 @@
                                             <td>{{ $buku->author->namaPenulis ?? 'N/A' }}</td>
                                             <td>{{ $buku->penerbit->namaPenerbit ?? 'N/A' }}</td>
                                             <td>{{ $buku->tahun->tahun ?? 'N/A' }}</td>
+                                            <td>{{ $buku->genre->namaGenre ?? 'N/A' }}</td>
                                             <td>
                                                 <div class="d-flex gap-2">
                                                     <a href="{{ route('edit.buku',$buku->id) }}" class="btn btn-sm btn-warning">
