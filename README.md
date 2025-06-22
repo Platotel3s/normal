@@ -57,21 +57,8 @@ php artisan db:seed
 php artisan serve
 ```
 
-### 7. 📸 Screenshot
+## 📸 Screenshot
+<h1>Menyusul</h1>
 
-### 📚 Halaman Daftar Buku
-![Daftar Buku](example/5.png)
-
-### ✍️ Form Tambah Buku
-![Form Tambah Buku](example/4.png)
-
-### 🏢 Daftar Penerbit
-![Daftar Penerbit](example/1.png)
-
-### 📆 Daftar Tahun Rilis
-![Daftar Tahun Rilis](example/2.png)
-
-### ⌨️ Daftar Penulis
-![Daftar Penulis](example/3.png)
 
 
