@@ -1,6 +1,6 @@
 # 📚 Aplikasi Manajemen Buku Perpustakaan
 
-Aplikasi web berbasis Laravel untuk membantu petugas perpustakaan dalam mengelola data buku, penulis, penerbit, dan tahun terbit. Dilengkapi dengan fitur autentikasi, antarmuka yang sederhana, dan navigasi yang mudah digunakan.
+Aplikasi web berbasis Laravel untuk membantu petugas perpustakaan dalam mengelola data buku, penulis, penerbit, dan tahun terbit. Dilengkapi dengan fitur autentikasi, antarmuka yang sederhana, dan navigasi yang mudah digunakan. Ini cuma Aplikasi buat diri saya sendiri, karena buku saya banyak banget. Tapi kalau kalian mau coba silahkan. 
 
 ---
 
@@ -21,7 +21,7 @@ Aplikasi web berbasis Laravel untuk membantu petugas perpustakaan dalam mengelol
 
 ### 1. Clone Repo
 ```
-git clone https://github.com/username/nama-repo.git
+git clone https://github.com/Platotel3s/normal.git
 cd nama-repo
 ```
 
@@ -57,8 +57,22 @@ php artisan db:seed
 php artisan serve
 ```
 
-## 📸 Screenshot
-<h1>Menyusul</h1>
+### 7. 📸 Screenshot
 
+<img src="example/koleksiBuku.png">
+<img src="example/tambahBuku.png">
+<img src="example/editBuku.png">
+<img src="example/daftarPenulis.png">
+<img src="example/tambahPenulis.png">
+<img src="example/editPenulis.png">
+<img src="example/daftarTahun.png">
+<img src="example/tambahTahun.png">
+<img src="example/editTahun.png">
+<img src="example/daftarPenerbit.png">
+<img src="example/tambahPenerbit.png">
+<img src="example/editPenerbit.png">
+<img src="example/daftarGenre.png">
+<img src="example/tambahGenre.png">
+<img src="example/editGenre.png">
 
 
