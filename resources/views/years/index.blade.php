@@ -8,6 +8,11 @@
                         Daftar Tahun Rilis Yang Dikeluarkan Penerbit
                     </div>
                     <div class="card-body">
+                        <div class="mb-3 text-end">
+                            <a href="{{ route('create.years') }}" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Tambah tahun rilis
+                            </a>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover table-bordered align-middle">
                                 <thead class="table-dark">
@@ -24,10 +29,11 @@
                                             <td>{{ $tahun->updated_at }}</td>
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <a href="{{ route('edit.years',$tahun->id) }}" class="btn btn-warning btn-sm">
+                                                    <a href="{{ route('edit.years', $tahun->id) }}"
+                                                        class="btn btn-warning btn-sm">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </a>
-                                                    <form action="{{ route('hapus.years',$tahun->id) }}" method="POST">
+                                                    <form action="{{ route('hapus.years', $tahun->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">
@@ -41,9 +47,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="{{ route('create.years') }}" class="btn btn-success">
-                            <i class="fas fa-plus"></i> Tambah tahun rilis
-                        </a>
+                        <div class="d-flex justify-content-center">
+                            @for ($i = 1; $i <= $years->lastPage(); $i++)
+                                <a href="{{ $years->url($i) }}"
+                                    class="btn btn-sm {{ $years->currentPage() == $i ? 'btn-primary' : 'btn-outline-primary' }} mx-1">
+                                    {{ $i }}
+                                </a>
+                            @endfor
+                        </div>
                     </div>
                 </div>
             </div>

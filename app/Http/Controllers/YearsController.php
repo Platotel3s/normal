@@ -12,7 +12,7 @@ class YearsController extends Controller
      */
     public function index()
     {
-        $years=Tahun::all();
+        $years=Tahun::paginate(10);
         return view('years.index',compact('years'));
     }
 
@@ -33,7 +33,7 @@ class YearsController extends Controller
             'tahun'=>'required',
         ]);
         $years=Tahun::create($request->all());
-        return redirect()->route('daftar.years')->with('success','Berhasil menambah tahun rilis');
+        return redirect()->route('create.years')->with('success','Berhasil menambah tahun rilis');
     }
 
     /**
