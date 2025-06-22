@@ -8,6 +8,11 @@
                         Daftar Penerbit
                     </div>
                     <div class="card-body">
+                        <div class="mb-3 text-end">
+                            <a href="{{ route('create.penerbit') }}" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Tambah Penerbit
+                            </a>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover table-bordered align-middle">
                                 <thead class="table-dark">
@@ -26,10 +31,12 @@
                                             <td>{{ $penerbit->updated_at }}</td>
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <a href="{{ route('edit.penerbit',$penerbit->id) }}" class="btn btn-warning btn-sm">
+                                                    <a href="{{ route('edit.penerbit', $penerbit->id) }}"
+                                                        class="btn btn-warning btn-sm">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </a>
-                                                    <form action="{{ route('hapus.penerbit',$penerbit->id) }}" method="POST">
+                                                    <form action="{{ route('hapus.penerbit', $penerbit->id) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">
@@ -43,9 +50,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="{{ route('create.penerbit') }}" class="btn btn-success">
-                            <i class="fas fa-plus"></i> Tambah Penerbit
-                        </a>
+                        <div class="d-flex justify-content-center">
+                            @for ($i = 1; $i <= $publishers->lastPage(); $i++)
+                                <a href="{{ $publishers->url($i) }}"
+                                    class="btn btn-sm {{ $publishers->currentPage() == $i ? 'btn-primary' : 'btn-outline-primary' }} mx-1">
+                                    {{ $i }}
+                                </a>
+                            @endfor
+                        </div>
                     </div>
                 </div>
             </div>

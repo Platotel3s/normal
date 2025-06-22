@@ -8,6 +8,11 @@
                         Daftar Penulis
                     </div>
                     <div class="card-body">
+                        <div class="mb-3 text-end">
+                            <a href="{{ route('create.author') }}" class="btn btn-success shadow">
+                                <i class="fas fa-plus"></i> Tambah penulis
+                            </a>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover align-middle">
                                 <thead class="table-dark">
@@ -24,10 +29,11 @@
                                             <td>{{ $author->updated_at }}</td>
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <a href="{{ route('edit.author',$author->id) }}" class="btn btn-warning btn-sm">
+                                                    <a href="{{ route('edit.author', $author->id) }}"
+                                                        class="btn btn-warning btn-sm">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </a>
-                                                    <form action="{{ route('hapus.author',$author->id) }}" method="POST">
+                                                    <form action="{{ route('hapus.author', $author->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">
@@ -41,9 +47,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="{{ route('create.author') }}" class="btn btn-success shadow">
-                            <i class="fas fa-plus"></i> Tambah penulis
-                        </a>
+                        <div class="d-flex justify-content-center">
+                            @for ($i = 1; $i <= $authors->lastPage(); $i++)
+                                <a href="{{ $authors->url($i) }}"
+                                    class="btn btn-sm {{ $authors->currentPage() == $i ? 'btn-primary' : 'btn-outline-primary' }} mx-1">
+                                    {{ $i }}
+                                </a>
+                            @endfor
+                        </div>
                     </div>
                 </div>
             </div>

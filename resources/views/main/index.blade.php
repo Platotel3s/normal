@@ -7,10 +7,15 @@
                     <div class="card-header">List buku</div>
                     <div class="card-body">
                         @if (session('success'))
-                            <div class="bg-success text-white m-4 p-12">
+                            <div class="bg-success text-white w-25 rounded p-3">
                                 {{ session('success') }}
                             </div>
                         @endif
+                        <div class="mb-3 text-end">
+                            <a href="{{ route('create.buku') }}" class="btn btn-success shadow">
+                                <i class="fas fa-plus"></i> Tambah Buku
+                            </a>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover align-middle">
                                 <thead class="table-dark">
@@ -25,7 +30,12 @@
                                     @foreach ($bukus as $buku)
                                         <tr>
                                             <td>{{ $buku->judul }}</td>
-                                            <td>{{ $buku->author->namaPenulis ?? 'N/A' }}</td>
+                                            {{-- <td>{{ $buku->author->namaPenulis ?? 'N/A' }}</td> --}}
+                                            <td>@foreach ($buku->authors as $author)
+                                                <span class="badge bg-info">
+                                                    {{ $author->namaPenulis }}
+                                                </span>
+                                            @endforeach</td>
                                             <td>{{ $buku->penerbit->namaPenerbit ?? 'N/A' }}</td>
                                             <td>{{ $buku->tahun->tahun ?? 'N/A' }}</td>
                                             <td>{{ $buku->genre->namaGenre ?? 'N/A' }}</td>

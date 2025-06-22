@@ -12,7 +12,7 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        $publishers=Penerbit::all();
+        $publishers=Penerbit::paginate(5);
         return view('publisher.index',compact('publishers'));
     }
 
@@ -34,7 +34,7 @@ class PublisherController extends Controller
             'alamat'=>'required',
         ]);
         $publishers=Penerbit::create($request->all());
-        return redirect()->route('daftar.penerbit')->with('success','Berhasil menambah daftar penerbit');
+        return redirect()->route('create.penerbit')->with('success','Berhasil menambah daftar penerbit');
     }
 
     /**

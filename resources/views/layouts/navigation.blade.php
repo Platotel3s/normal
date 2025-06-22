@@ -4,11 +4,8 @@
         {{ Auth::user()->name }}
     </div>
     <div class="d-flex flex-column w-100 px-3 gap-3 mt-4">
-        <a href="{{ route('create.buku') }}" class="btn btn-info text-white text-start shadow-sm">
-            <i class="fas fa-plus me-2"></i> Tambah Buku
-        </a>
         <a href="{{ route('daftar.buku') }}" class="btn btn-info text-white text-start shadow-sm">
-            <i class="fas fa-home me-2"></i> Beranda
+            <i class="fas fa-book me-2"></i> Koleksi Buku
         </a>
         <a href="{{ route('daftar.author') }}" class="btn btn-info text-white text-start shadow-sm">
             <i class="fas fa-user me-2"></i> Penulis

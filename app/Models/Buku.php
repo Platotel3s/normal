@@ -26,4 +26,7 @@ class Buku extends Model
     public function genre(){
         return $this->belongsTo(Genre::class);
     }
+    public function authors(){
+        return $this->belongsToMany(Author::class);
+    }
 }

@@ -10,4 +10,7 @@ class Author extends Model
     protected $fillable=[
         'namaPenulis'
     ];
+    public function bukus(){
+        return $this->belongsToMany(Buku::class);
+    }
 }

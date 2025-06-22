@@ -8,6 +8,11 @@
                         New Author
                     </div>
                     <div class="card-body">
+                        @if (session('success'))
+                            <div class="bg-success w-50 p-3 mb-4 rounded text-white">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <form action="{{ route('store.author') }}" method="POST">
                             @csrf
                             <div class="mb-4">

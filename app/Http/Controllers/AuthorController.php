@@ -11,7 +11,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $authors=Author::all();
+        $authors=Author::paginate(10);
         return view('author.index',compact('authors'));
     }
 
@@ -34,7 +34,7 @@ class AuthorController extends Controller
         $authors=Author::create([
             'namaPenulis'=>$request->namaPenulis,
         ]);
-        return redirect()->route('daftar.author')->with('success','Berhasil menambah penulis');
+        return redirect()->route('create.author')->with('success','Berhasil menambah penulis');
     }
 
     /**

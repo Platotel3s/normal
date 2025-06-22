@@ -107,12 +107,6 @@
                     </div>
                 </div>
             </div>
-            <style>
-                .pagination li a,
-                .pagination li span {
-                    font-size: 0.9rem;
-                }
-            </style>
         @endsection
 
     </div>

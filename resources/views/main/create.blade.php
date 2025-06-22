@@ -14,10 +14,12 @@
                             </div>
                             <div class="mb-3 p-2">
                                 <label for="author_id" class="form-label">Author</label>
-                                <select name="author_id" id="author_id" class="form-control" required>
+                                <select name="author_id[]" id="author_id" class="form-control" required>
                                     <option value="" disabled selected>Pilih Penulis</option>
                                     @foreach ($authors as $author)
-                                        <option value="{{ $author->id }}">{{ $author->namaPenulis }}</option>
+                                        <option value="{{ $author->id }}" {{ in_array($author->id, old('author_id', [])) ? 'selected' : '' }}>
+                                            {{ $author->namaPenulis }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -40,7 +42,7 @@
                                 </select>
                             </div>
                             <div class="mb-3 p-2">
-                                <label for="genre_id" class="form-label">Tahun Penerbit</label>
+                                <label for="genre_id" class="form-label">Kategori Buku</label>
                                 <select name="genre_id" id="genre_id" class="form-control" required>
                                     <option value="" disabled selected>Pilih Genre</option>
                                     @foreach ($gen as $genre)
@@ -48,9 +50,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="d-grid gap-2 d-md-flex">
+                            <div class="d-grid gap-2 d-md-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary mb-3">Tambah</button>
                                 <button type="reset" class="btn btn-warning mb-3">Reset</button>
+                                <a href="{{ route('daftar.buku') }}" class="btn btn-secondary mb-3">Kembali</a>
                             </div>
                         </form>
                     </div>

@@ -6,6 +6,11 @@
                 <div class="card shadow">
                     <div class="card-header">New Publishers</div>
                     <div class="card-body">
+                            @if (session('success'))
+                                <div class="mb-3 w-50 p-3 bg-success text-white rounded">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                         <form action="{{ route('store.penerbit') }}" method="POST">
                             @csrf
                             <div class="mb-4">

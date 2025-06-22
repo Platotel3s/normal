@@ -15,7 +15,7 @@ class BukuController extends Controller
      */
     public function index()
     {
-        $bukus=Buku::with(['author','penerbit','tahun','genre'])->get();
+        $bukus=Buku::with(['authors','penerbit','tahun','genre'])->get();
         return view('main.index',compact('bukus'));
     }
 
@@ -29,7 +29,7 @@ class BukuController extends Controller
         $tahuns=Tahun::all();
         $gen=Genre::all();
 
-        return view('main.create',compact(['authors','penerbits','tahuns','genres']));
+        return view('main.create',compact(['authors','penerbits','tahuns','gen']));
     }
 
     /**
@@ -44,13 +44,13 @@ class BukuController extends Controller
             'tahun_id'=>'required|exists:tahuns,id',
             'genre_id'=>'required|exists:genres,id',
         ]);
-        Buku::create([
+        $bukus=Buku::create([
             'judul'=>$request->judul,
-            'author_id'=>$request->author_id,
             'penerbit_id'=>$request->penerbit_id,
             'tahun_id'=>$request->tahun_id,
             'genre_id'=>$request->genre_id,
         ]);
+        $bukus->authors()->attach($request->author_id);
         return redirect()->route('daftar.buku')->with('success','Berhasil input data');
     }
 
@@ -83,13 +83,20 @@ class BukuController extends Controller
     {
         $request->validate([
             'judul'=>'required|string',
-            'author_id'=>'required|string',
-            'penerbit_id'=>'required|string',
-            'tahun_id'=>'required|integer',
-            'genre_id'=>'required|integer',
+            'author_id'=>'required|array',
+            'author_id.*'=>'exists:authors,id',
+            'penerbit_id'=>'required|exists:penerbits,id',
+            'tahun_id'=>'required|exists:tahuns,id',
+            'genre_id'=>'required|exists:genres,id',
         ]);
         $bukus=Buku::findOrFail($id);
-        $bukus->update($request->all());
+        $bukus->update([
+            'judul'=>$request->judul,
+            'penerbit_id'=>$request->penerbit_id,
+            'tahun_id'=>$request->tahun_id,
+            'genre_id'=>$request->genre_id,
+        ]);
+        $bukus->authors()->sync($request->author_id);
         return redirect()->route('daftar.buku')->with('success','Berhasil update');
     }
 
