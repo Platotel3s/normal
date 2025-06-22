@@ -11,11 +11,11 @@
                             @method('PUT')
                             <div class="mb-4">
                                 <label for="namaPenerbit" class="form-label">Nama Penerbit</label>
-                                <input type="text" name="namaPenerbit" id="namaPenerbit" value="{{ $publishers->namaPenerbit }}" required>
+                                <input type="text" class="form-control" name="namaPenerbit" id="namaPenerbit" value="{{ $publishers->namaPenerbit }}" required>
                             </div>
                             <div class="mb-4">
                                 <label for="alamat" class="form-label">Alamat Penerbit</label>
-                                <input type="text" name="alamat" id="alamat" value="{{ $publishers->alamat }}" required>
+                                <input type="text" class="form-control" name="alamat" id="alamat" value="{{ $publishers->alamat }}" required>
                             </div>
                             <div class="d-grid gap-2 d-md-flex">
                                 <button type="submit" class="btn btn-primary">Update</button>
