@@ -12,7 +12,7 @@ class GenreController extends Controller
      */
     public function index()
     {
-        $gen=Genre::all();
+        $gen=Genre::paginate(10);
         return view('gen.index',compact('gen'));
     }
 
@@ -62,7 +62,7 @@ class GenreController extends Controller
         $request->validate([
             'namaGenre'=>'required',
         ]);
-        $gen=findOrFail($id);
+        $gen=Genre::findOrFail($id);
         $gen->update($request->all());
         return redirect()->route('daftar.genre');
     }
