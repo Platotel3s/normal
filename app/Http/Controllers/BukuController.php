@@ -10,18 +10,11 @@ use App\Models\Tahun;
 use App\Models\Genre;
 class BukuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $bukus=Buku::with(['authors','penerbit','tahun','genre'])->get();
         return view('main.index',compact('bukus'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $authors=Author::all();
@@ -31,10 +24,6 @@ class BukuController extends Controller
 
         return view('main.create',compact(['authors','penerbits','tahuns','gen']));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -53,19 +42,11 @@ class BukuController extends Controller
         $bukus->authors()->attach($request->author_id);
         return redirect()->route('daftar.buku')->with('success','Berhasil input data');
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $bukus=Buku::findOrFail($id);
         return view('main.show',compact('bukus'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $bukus=Buku::findOrFail($id);
@@ -75,10 +56,6 @@ class BukuController extends Controller
         $gen=Genre::all();
         return view('main.edit',compact(['bukus','authors','penerbits','tahuns','gen']));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $request->validate([
