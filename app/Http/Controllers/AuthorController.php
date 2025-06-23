@@ -9,9 +9,13 @@ class AuthorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $authors=Author::paginate(10);
+        $query=Author::query();
+        if($request->has('search') && $request->search != ''){
+            $query->where('namaPenulis','like','%'.$request->search.'%');
+        }
+        $authors=$query->paginate(10);
         return view('author.index',compact('authors'));
     }
 

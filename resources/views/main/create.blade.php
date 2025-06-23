@@ -14,7 +14,7 @@
                             </div>
                             <div class="mb-3 p-2">
                                 <label for="author_id" class="form-label">Author</label>
-                                <select name="author_id[]" id="author_id" class="form-control" required>
+                                <select name="author_id[]" id="author_id" class="form-control" multiple required>
                                     <option value="" disabled selected>Pilih Penulis</option>
                                     @foreach ($authors as $author)
                                         <option value="{{ $author->id }}" {{ in_array($author->id, old('author_id', [])) ? 'selected' : '' }}>
@@ -22,6 +22,7 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <small class="text-muted">Tekan Ctrl (Windows) atau Cmd (Mac) untuk memilih lebih dari satu.</small>
                             </div>
                             <div class="mb-3 p-2">
                                 <label for="penerbit_id" class="form-label">Penerbit</label>

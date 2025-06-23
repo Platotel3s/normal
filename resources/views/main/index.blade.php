@@ -16,6 +16,12 @@
                                 <i class="fas fa-plus"></i> Tambah Buku
                             </a>
                         </div>
+                        <form action="{{ route('daftar.buku') }}" method="GET" class="mb-3">
+                            <div class="input-group">
+                                <input type="text" name="search" id="search" class="form-control" placeholder="Cari buku" value="{{ request('search') }}">
+                                <button type="submit" class="btn btn-outline-primary">Cari</button>
+                            </div>
+                        </form>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover align-middle">
                                 <thead class="table-dark">
@@ -30,7 +36,6 @@
                                     @foreach ($bukus as $buku)
                                         <tr>
                                             <td>{{ $buku->judul }}</td>
-                                            {{-- <td>{{ $buku->author->namaPenulis ?? 'N/A' }}</td> --}}
                                             <td>@foreach ($buku->authors as $author)
                                                 <span class="badge bg-info">
                                                     {{ $author->namaPenulis }}
@@ -57,6 +62,13 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            @for ($i=1;$i<=$bukus->lastPage();$i++)
+                                <a href="{{ $bukus->url($i) }}" class="btn btn-sm {{ $bukus->currentPage()==$i ? 'btn-primary':'btn-outline-primary' }} mx-1">
+                                    {{ $i }}
+                                </a>
+                            @endfor
                         </div>
                     </div>
                 </div>

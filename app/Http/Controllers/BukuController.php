@@ -10,9 +10,13 @@ use App\Models\Tahun;
 use App\Models\Genre;
 class BukuController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $bukus=Buku::with(['authors','penerbit','tahun','genre'])->get();
+        $query=Buku::with(['authors','penerbit','tahun','genre']);
+        if($request->has('search') && $request->search !=''){
+            $query->where('judul','like','%'.$request->search.'%');
+        }
+        $bukus=$query->paginate(5);
         return view('main.index',compact('bukus'));
     }
     public function create()
@@ -27,11 +31,12 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul'=>'required|string',
-            'author_id'=>'required|exists:authors,id',
-            'penerbit_id'=>'required|exists:penerbits,id',
-            'tahun_id'=>'required|exists:tahuns,id',
-            'genre_id'=>'required|exists:genres,id',
+            'judul' => 'required|string',
+            'author_id' => 'required|array',
+            'author_id.*' => 'exists:authors,id',
+            'penerbit_id' => 'required|exists:penerbits,id',
+            'tahun_id' => 'required|exists:tahuns,id',
+            'genre_id' => 'required|exists:genres,id',
         ]);
         $bukus=Buku::create([
             'judul'=>$request->judul,

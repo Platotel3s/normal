@@ -10,9 +10,13 @@ class YearsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $years=Tahun::paginate(10);
+        $query=Tahun::query();
+        if($request->has('search') && $request->search != ''){
+            $query->where('tahun','like','%'.$request->search.'%');
+        }
+        $years=$query->paginate(10);
         return view('years.index',compact('years'));
     }
 
