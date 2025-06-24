@@ -24,6 +24,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
                         <a href="{{ route('register.page') }}" class="btn btn-secondary">Register</a>
+                        <a href="{{ route('welcome') }}" class="btn btn-warning">Kembali</a>
                     </form>
                 </div>
             </div>
