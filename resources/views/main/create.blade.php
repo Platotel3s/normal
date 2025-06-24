@@ -6,6 +6,13 @@
                 <div class="card shadow">
                     <div class="card-header text-center">Masukkan buku baru</div>
                     <div class="card-Body">
+                        <div class="mb-3">
+                            @if (session('success'))
+                                <div class="bg-success text-white w-25 rounded p-3 mb-3">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                        </div>
                         <form action="{{ route('store.buku') }}" method="POST">
                             @csrf
                             <div class="mb-3 p-2">
@@ -14,15 +21,17 @@
                             </div>
                             <div class="mb-3 p-2">
                                 <label for="author_id" class="form-label">Author</label>
-                                <select name="author_id[]" id="author_id" class="form-control" multiple required>
-                                    <option value="" disabled selected>Pilih Penulis</option>
+                                <select name="author_id[]" id="author_id_select" class="form-control" multiple required>
                                     @foreach ($authors as $author)
-                                        <option value="{{ $author->id }}" {{ in_array($author->id, old('author_id', [])) ? 'selected' : '' }}>
+                                        <option value="{{ $author->id }}"
+                                            {{ in_array($author->id, old('author_id', [])) ? 'selected' : '' }}>
                                             {{ $author->namaPenulis }}
                                         </option>
                                     @endforeach
                                 </select>
-                                <small class="text-muted">Tekan Ctrl (Windows) atau Cmd (Mac) untuk memilih lebih dari satu.</small>
+
+                                <small class="text-muted">Tekan Ctrl (Windows) atau Cmd (Mac) untuk memilih lebih dari
+                                    satu.</small>
                             </div>
                             <div class="mb-3 p-2">
                                 <label for="penerbit_id" class="form-label">Penerbit</label>
@@ -63,3 +72,14 @@
         </div>
     </div>
 @endsection
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#author_id_select').select2({
+            placeholder: "Pilih Penulis",
+            allowClear: true,
+            width: '100%'
+        });
+    });
+</script>

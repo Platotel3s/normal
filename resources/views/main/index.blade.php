@@ -6,11 +6,6 @@
                 <div class="card shadow">
                     <div class="card-header">List buku</div>
                     <div class="card-body">
-                        @if (session('success'))
-                            <div class="bg-success text-white w-25 rounded p-3 mb-3">
-                                {{ session('success') }}
-                            </div>
-                        @endif
                         <div class="d-flex flex-row justify-content-between">
                             <div class="mb-3 text-end">
                                 <a href="{{ route('create.buku') }}" class="btn btn-success shadow">
