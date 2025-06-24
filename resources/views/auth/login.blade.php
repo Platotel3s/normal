@@ -28,7 +28,18 @@
                     </form>
                 </div>
             </div>
+            <div id="lottie-container" style="width: auto; height: 300px;" class=""></div>
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/lottie-web@5.12.0/build/player/lottie.min.js"></script>
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById('lottie-container'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '{{ asset('assets/book.json') }}'
+  });
+</script>
 @endsection

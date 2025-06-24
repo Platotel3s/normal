@@ -20,6 +20,7 @@
                             <div class="d-grid gap-2 d-md-flex">
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <button type="reset" class="btn btn-warning">Update</button>
+                                <a href="{{ route('daftar.penerbit') }}" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
                     </div>

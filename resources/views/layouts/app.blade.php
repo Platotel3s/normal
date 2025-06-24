@@ -26,7 +26,7 @@
         </div>
     </div>
 
-
+    <script src="https://unpkg.com/lottie-web@5.12.0/build/player/lottie.min.js"></script>
     <link rel="stylesheet" href="{{ asset('boot/js/bootstrap.bundle.js') }}">
 </body>
 

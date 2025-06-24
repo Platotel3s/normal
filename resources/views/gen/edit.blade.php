@@ -14,7 +14,7 @@
                                 <input type="text" name="namaGenre" id="namaGenre" class="form-control" value="{{ $gen->namaGenre }}" required>
                             </div>
                             <div class="d-grid gap-2 d-md-flex">
-                                <button type="submit" class="btn btn-success">Update Genre</button>
+                                <button type="submit" class="btn btn-success">Update</button>
                                 <button type="reset" class="btn btn-warning">Batal</button>
                                 <a href="{{ route('daftar.genre') }}" class="btn btn-secondary">Kembali</a>
                             </div>
