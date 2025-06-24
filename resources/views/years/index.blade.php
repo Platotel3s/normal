@@ -8,17 +8,20 @@
                         Daftar Tahun Rilis Yang Dikeluarkan Penerbit
                     </div>
                     <div class="card-body">
-                        <div class="mb-3 text-end">
-                            <a href="{{ route('create.years') }}" class="btn btn-success">
-                                <i class="fas fa-plus"></i> Tambah tahun rilis
-                            </a>
-                        </div>
-                        <form action="{{ route('daftar.years') }}" method="GET" class="mb-3">
-                            <div class="input-group">
-                                <input type="number" name="search" id="search" class="form-control" placeholder="Cari tahun rilis" value="{{ request('search') }}">
-                                <button type="submit" class="btn btn-outline-primary">Cari</button>
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="mb-3 text-end">
+                                <a href="{{ route('create.years') }}" class="btn btn-success">
+                                    <i class="fas fa-plus"></i> Tambah tahun rilis
+                                </a>
                             </div>
-                        </form>
+                            <form action="{{ route('daftar.years') }}" method="GET" class="mb-3">
+                                <div class="input-group">
+                                    <input type="number" name="search" id="search" class="form-control"
+                                        placeholder="Cari tahun rilis" value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-outline-primary">Cari</button>
+                                </div>
+                            </form>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover table-bordered align-middle">
                                 <thead class="table-dark">

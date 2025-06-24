@@ -8,17 +8,20 @@
                         Daftar Penulis
                     </div>
                     <div class="card-body">
-                        <div class="mb-3 text-end">
-                            <a href="{{ route('create.author') }}" class="btn btn-success shadow">
-                                <i class="fas fa-plus"></i> Tambah penulis
-                            </a>
-                        </div>
-                        <form action="{{ route('daftar.author') }}" method="GET" class="mb-3">
-                            <div class="input-group">
-                                <input type="text" name="search" id="search" class="form-control" placeholder="Cari Penulis" value="{{ request('search') }}">
-                                <button type="submit" class="btn btn-outline-primary">Cari</button>
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="mb-3 text-end">
+                                <a href="{{ route('create.author') }}" class="btn btn-success shadow">
+                                    <i class="fas fa-plus"></i> Tambah penulis
+                                </a>
                             </div>
-                        </form>
+                            <form action="{{ route('daftar.author') }}" method="GET" class="mb-3">
+                                <div class="input-group">
+                                    <input type="text" name="search" id="search" class="form-control"
+                                        placeholder="Cari Penulis" value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-outline-primary">Cari</button>
+                                </div>
+                            </form>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover align-middle">
                                 <thead class="table-dark">

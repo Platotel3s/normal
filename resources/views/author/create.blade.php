@@ -17,7 +17,7 @@
                             @csrf
                             <div class="mb-4">
                                 <label for="namaPenulis" class="form-label">Nama Author</label>
-                                <input type="text" name="namaPenulis" id="namaPenulis" class="form-control" required>
+                                <input type="text" name="namaPenulis" id="namaPenulis" class="form-control" autofocus required>
                             </div>
                             <div class="d-grid gap-2 d-md-flex">
                                 <button type="submit" class="btn btn-primary">Tambah</button>

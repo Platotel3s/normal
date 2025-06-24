@@ -7,56 +7,37 @@ use App\Models\Genre;
 
 class GenreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $gen=Genre::paginate(10);
+        $query=Genre::query();
+        if($request->has('search') && $request->search != ''){
+            $query->where('like','%'.$request->search.'%');
+        }
+        $gen=$query->paginate(10);
         return view('gen.index',compact('gen'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('gen.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'namaGenre'=>'required',
         ]);
         $gen=Genre::create($request->all());
-        return redirect()->route('daftar.genre');
+        return redirect()->route('create.genre')->with('success','Berhasil menambah Genre');
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $gen=Genre::findOrFail($id);
         return view('gen.show',compact('gen'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $gen=Genre::findOrFail($id);
         return view('gen.edit',compact('gen'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -66,10 +47,6 @@ class GenreController extends Controller
         $gen->update($request->all());
         return redirect()->route('daftar.genre');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $gen=Genre::findOrFail($id);

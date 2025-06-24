@@ -10,9 +10,13 @@ class PublisherController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $publishers=Penerbit::paginate(5);
+        $query=Penerbit::query();
+        if($request->has('search') && $request->search !=''){
+            $query->where('namaPenerbit','like','%'.$request->search.'%');
+        }
+        $publishers=$query->paginate(5);
         return view('publisher.index',compact('publishers'));
     }
 

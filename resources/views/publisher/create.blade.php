@@ -15,7 +15,7 @@
                             @csrf
                             <div class="mb-4">
                                 <label for="namaPenerbit" class="form-label">Nama Penerbit</label>
-                                <input type="text" name="namaPenerbit" id="namaPenerbit" required class="form-control">
+                                <input type="text" name="namaPenerbit" id="namaPenerbit" autofocus required class="form-control">
                             </div>
                             <div class="mb-4">
                                 <label for="alamat" class="form-label">Alamat Penerbit</label>

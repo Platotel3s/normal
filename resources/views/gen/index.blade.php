@@ -55,10 +55,19 @@
                         <div class="card shadow">
                             <div class="card-header">Daftar Genre Saat Ini</div>
                             <div class="card-body">
-                                <div class="mb-3 text-end">
-                                    <a href="{{ route('create.genre') }}" class="btn btn-success">
-                                        <i class="fas fa-plus"></i> Buat Genre
-                                    </a>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <div class="mb-3 text-end">
+                                        <a href="{{ route('create.genre') }}" class="btn btn-success">
+                                            <i class="fas fa-plus"></i> Buat Genre
+                                        </a>
+                                    </div>
+                                    <form action="{{ route('daftar.genre') }}" method="GET" class="mb-3">
+                                        <div class="input-group">
+                                            <input type="text" name="search" id="search" placeholder="Cari Genre"
+                                                value="{{ request('search') }}" class="form-control">
+                                            <button type="submit" class="btn btn-outline-primary">Cari</button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="table-fluid">
                                     <table class="table table-hover table-striped align-middle table-bordered">
