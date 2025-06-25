@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','Add New Authors - Koleksi Aduy')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
