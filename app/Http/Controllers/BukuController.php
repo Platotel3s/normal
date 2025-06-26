@@ -12,7 +12,7 @@ class BukuController extends Controller
 {
     public function index(Request $request)
     {
-        $query=Buku::with(['authors','penerbit','tahun','genre']);
+        $query=Buku::with(['authors','penerbit','tahun','genre'])->where('user_id',auth()->id());
         if($request->has('search') && $request->search !=''){
             $query->where('judul','like','%'.$request->search.'%');
         }
@@ -21,10 +21,10 @@ class BukuController extends Controller
     }
     public function create()
     {
-        $authors=Author::all();
-        $penerbits=Penerbit::all();
-        $tahuns=Tahun::all();
-        $gen=Genre::all();
+        $authors=Author::where('user_id',auth()->id())->get();
+        $penerbits=Penerbit::where('user_id',auth()->id())->get();
+        $tahuns=Tahun::where('user_id',auth()->id())->get();
+        $gen=Genre::where('user_id',auth()->id())->get();
 
         return view('main.create',compact(['authors','penerbits','tahuns','gen']));
     }
@@ -40,6 +40,7 @@ class BukuController extends Controller
         ]);
         $bukus=Buku::create([
             'judul'=>$request->judul,
+            'user_id'=>auth()->id(),
             'penerbit_id'=>$request->penerbit_id,
             'tahun_id'=>$request->tahun_id,
             'genre_id'=>$request->genre_id,
@@ -55,10 +56,10 @@ class BukuController extends Controller
     public function edit(string $id)
     {
         $bukus=Buku::findOrFail($id);
-        $authors=Author::all();
-        $penerbits=Penerbit::all();
-        $tahuns=Tahun::all();
-        $gen=Genre::all();
+        $authors=Author::where('user_id',auth()->id())->get();
+        $penerbits=Penerbit::where('user_id',auth()->id())->get();
+        $tahuns=Tahun::where('user_id',auth()->id())->get();
+        $gen=Genre::where('user_id',auth()->id())->get();
         return view('main.edit',compact(['bukus','authors','penerbits','tahuns','gen']));
     }
     public function update(Request $request, string $id)

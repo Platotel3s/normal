@@ -9,7 +9,7 @@ class GenreController extends Controller
 {
     public function index(Request $request)
     {
-        $query=Genre::query();
+        $query=Genre::query()->where('user_id',auth()->id());
         if($request->has('search') && $request->search != ''){
             $query->where('like','%'.$request->search.'%');
         }
@@ -25,7 +25,10 @@ class GenreController extends Controller
         $request->validate([
             'namaGenre'=>'required',
         ]);
-        $gen=Genre::create($request->all());
+        $gen=Genre::create([
+            'namaGenre'=>$request->namaGenre,
+            'user_id'=>auth()->id(),
+        ]);
         return redirect()->route('create.genre')->with('success','Berhasil menambah Genre');
     }
     public function show(string $id)

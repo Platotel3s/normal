@@ -9,10 +9,11 @@ class Buku extends Model
     protected $table='bukus';
     protected $fillable=[
         'judul',
+        'user_id',
         'author_id',
         'penerbit_id',
         'tahun_id',
-        'genre_id'
+        'genre_id',
     ];
     public function author(){
         return $this->belongsTo(Author::class);
@@ -28,5 +29,8 @@ class Buku extends Model
     }
     public function authors(){
         return $this->belongsToMany(Author::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

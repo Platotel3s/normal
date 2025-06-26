@@ -12,7 +12,7 @@ class PublisherController extends Controller
      */
     public function index(Request $request)
     {
-        $query=Penerbit::query();
+        $query=Penerbit::query()->where('user_id',auth()->id());
         if($request->has('search') && $request->search !=''){
             $query->where('namaPenerbit','like','%'.$request->search.'%');
         }
@@ -37,7 +37,11 @@ class PublisherController extends Controller
             'namaPenerbit'=>'required',
             'alamat'=>'required',
         ]);
-        $publishers=Penerbit::create($request->all());
+        $publishers=Penerbit::create([
+            'namaPenerbit'=>$request->namaPenerbit,
+            'alamat'=>$request->alamat,
+            'user_id'=>auth()->id(),
+        ]);
         return redirect()->route('create.penerbit')->with('success','Berhasil menambah daftar penerbit');
     }
 

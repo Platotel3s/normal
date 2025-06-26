@@ -45,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function bukus(){
+        return $this->hasMany(Buku::class);
+    }
+    public function authors(){
+        return $this->haMany(Author::class);
+    }
 }

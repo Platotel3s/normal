@@ -10,5 +10,9 @@ class Penerbit extends Model
     protected $fillable=[
         'namaPenerbit',
         'alamat',
+        'user_id',
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

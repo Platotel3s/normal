@@ -12,7 +12,7 @@ class YearsController extends Controller
      */
     public function index(Request $request)
     {
-        $query=Tahun::query();
+        $query=Tahun::query()->where('user_id',auth()->id());
         if($request->has('search') && $request->search != ''){
             $query->where('tahun','like','%'.$request->search.'%');
         }
@@ -36,7 +36,10 @@ class YearsController extends Controller
         $request->validate([
             'tahun'=>'required',
         ]);
-        $years=Tahun::create($request->all());
+        $years=Tahun::create([
+            'tahun'=>$request->tahun,
+            'user_id'=>auth()->id(),
+        ]);
         return redirect()->route('create.years')->with('success','Berhasil menambah tahun rilis');
     }
 

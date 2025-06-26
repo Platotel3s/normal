@@ -11,7 +11,7 @@ class AuthorController extends Controller
      */
     public function index(Request $request)
     {
-        $query=Author::query();
+        $query=Author::query()->where('user_id',auth()->id());
         if($request->has('search') && $request->search != ''){
             $query->where('namaPenulis','like','%'.$request->search.'%');
         }
@@ -35,8 +35,10 @@ class AuthorController extends Controller
         $request->validate([
             'namaPenulis'=>'required|string',
         ]);
+        // dd(auth()->check(), auth()->id());
         $authors=Author::create([
             'namaPenulis'=>$request->namaPenulis,
+            'user_id'=>auth()->id(),
         ]);
         return redirect()->route('create.author')->with('success','Berhasil menambah penulis');
     }

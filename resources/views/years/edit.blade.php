@@ -7,7 +7,7 @@
                 <div class="card shadow">
                     <div class="card-header">Edit Tahun Rilis</div>
                     <div class="card-body">
-                        <form action="{{ route('update.years',$years->id) }}">
+                        <form action="{{ route('update.years',$years->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="mb-4">
