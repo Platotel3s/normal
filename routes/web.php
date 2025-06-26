@@ -7,6 +7,7 @@
     use App\Http\Controllers\YearsController;
     use App\Http\Controllers\PublisherController;
     use App\Http\Controllers\GenreController;
+    use App\Http\Controllers\DashboardController;
 
     Route::get('/', function () {
         return view('welcome');
@@ -50,6 +51,8 @@
         Route::get('/genre/create',[GenreController::class,'create'])->name('create.genre');
         Route::post('/genre/post',[GenreController::class,'store'])->name('store.genre');
         Route::put('/genre/{id}/update',[GenreController::class,'update'])->name('update.genre');
+
+        Route::get('/dashboard',[DashboardController::class,'statistik'])->name('statistik.dashboard');
     });
 
 

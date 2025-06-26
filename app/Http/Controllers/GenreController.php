@@ -11,7 +11,7 @@ class GenreController extends Controller
     {
         $query=Genre::query()->where('user_id',auth()->id());
         if($request->has('search') && $request->search != ''){
-            $query->where('like','%'.$request->search.'%');
+            $query->where('namaGenre','like','%'.$request->search.'%');
         }
         $gen=$query->paginate(10);
         return view('gen.index',compact('gen'));

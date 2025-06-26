@@ -19,6 +19,9 @@
         <a href="{{ route('daftar.genre') }}" class="btn btn-info text-white text-start shadow-sm">
             <i class="fas fa-book me-2"></i> Genre
         </a>
+        <a href="{{ route('statistik.dashboard') }}" class="btn btn-info text-white text-start shadow-sm">
+            <i class="fas fa-dashboard me-2"></i> Dashboard
+        </a>
     </div>
     <form action="{{ route('logout') }}" method="POST" class="w-100 px-3 mt-4">
         @csrf
