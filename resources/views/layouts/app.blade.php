@@ -9,66 +9,109 @@
     <link rel="stylesheet" href="{{ asset('font/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js" as="script">
-    @stack('styles')
-
-    <style>
-        body {
-            overflow-x: hidden;
-        }
-
-        @media (max-width: 768px) {
-            nav.sidebar {
-                position: fixed;
-                z-index: 999;
-                background-color: white;
-                height: 100vh;
-                width: 75%;
-                left: -100%;
-                top: 0;
-                transition: left 0.3s ease;
-                overflow-y: auto;
-            }
-
-            nav.sidebar.show {
-                left: 0;
-            }
-
-            .overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100vh;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-            }
-
-            .overlay.show {
-                display: block;
-            }
-        }
-    </style>
 </head>
-
+<style>
+    body {
+    overflow-x: hidden;
+    padding-left: 250px;
+}        
+nav.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    z-index: 1000;
+    background-color: #676767;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+}        
+.main-content {
+    transition: margin-left 0.3s ease;
+}        
+.sidebar-header {
+    padding: 20px;
+    background-color: #e9ecef;
+    border-bottom: 1px solid #dee2e6;
+}        
+.sidebar-menu {
+    padding: 0;
+    list-style: none;
+}        
+.sidebar-menu li {
+    width: 100%;
+}        
+.sidebar-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}        
+.sidebar-menu a:hover {
+    background-color: #e9ecef;
+}        
+.sidebar-menu .active {
+    background-color: #0d6efd;
+    color: white;
+}        
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100;
+}       
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+@media (max-width: 768px) {
+    body {
+        padding-left: 0;
+    }
+    nav.sidebar {
+        transform: translateX(-100%);
+    }
+    nav.sidebar.show {
+        transform: translateX(0);
+    }
+    .sidebar-toggle {
+        display: block;
+    }
+    .main-content {
+        margin-left: 0 !important;
+    }
+}
+</style>
 <body>
     @auth
         @if(Auth::check())
-            <button class="btn btn-primary d-md-none m-2" onclick="toggleSidebar()">
+            <button class="sidebar-toggle btn btn-primary" onclick="toggleSidebar()">
                 <i class="fas fa-bars"></i>
             </button>
 
             <div class="overlay" onclick="toggleSidebar()" id="sidebarOverlay"></div>
-            <nav class="sidebar d-md-block p-3" id="sidebarNav">
+            
+            <nav class="sidebar" id="sidebarNav">
                 @include('layouts.navigation')
             </nav>
         @endif
     @endauth
 
-    <main class="container-fluid">
-        <div class="row">
-            <div class="col p-3">
-                @yield('content')
+    <main class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col p-3">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </main>
@@ -79,10 +122,35 @@
 
     <script>
         function toggleSidebar() {
-            document.getElementById('sidebarNav').classList.toggle('show');
-            document.getElementById('sidebarOverlay').classList.toggle('show');
+            const sidebar = document.getElementById('sidebarNav');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+            
+            if (sidebar.classList.contains('show')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
+        
+        document.querySelectorAll('#sidebarNav a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    toggleSidebar();
+                }
+            });
+        });
+        
+        // Auto-close sidebar when window is resized to desktop view
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebarNav').classList.remove('show');
+                document.getElementById('sidebarOverlay').classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
     </script>
 </body>
-
 </html>
