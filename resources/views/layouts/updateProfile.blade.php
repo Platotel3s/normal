@@ -27,7 +27,7 @@
                         </div>
                         @if (Auth::user()->fotoProfil)
                         <div class="mb-3 text-center">
-                            <img src="{{ asset('storage/' . Auth::user()->fotoProfil) }}" alt="Foto Profil" class="rounded-circle shadow" style="width: 100px; height: auto;">
+                            <img src="{{ asset('storage/' . Auth::user()->fotoProfil) }}" alt="Foto Profil" class="rounded-circle shadow" style="width: 150px;height:150px;">
                             <p class="text-muted">Foto profil saat ini</p>
                         </div>
                         @endif
