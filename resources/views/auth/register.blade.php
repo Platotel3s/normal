@@ -10,7 +10,7 @@
                     <div class="card shadow w-100">
                         <div class="card-header bg-primary text-white">Register</div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
@@ -27,6 +27,10 @@
                                 <div class="mb-4">
                                     <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
                                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fotoProfil" class="form-label">Foto Profil</label>
+                                    <input type="file" name="fotoProfil" id="fotoProfil" class="form-control" required>
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">Register</button>
@@ -49,11 +53,12 @@
 <script src="https://unpkg.com/lottie-web@5.12.0/build/player/lottie.min.js"></script>
 <script>
     lottie.loadAnimation({
-        container: document.getElementById('lottie-container'),
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        path: '{{ asset('assets/register.json') }}'
+        container: document.getElementById('lottie-container')
+        , renderer: 'svg'
+        , loop: true
+        , autoplay: true
+        , path: '{{ asset('assets / register.json ') }}'
     });
+
 </script>
 @endsection

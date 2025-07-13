@@ -1,5 +1,7 @@
 <div class="d-flex flex-column align-items-center justify-content-between h-100 py-4">
-    <img src="{{ asset('assets/habibi.png') }}" alt="User Image" class="rounded-circle shadow" style="width: 100px; height: auto;">
+    @if (Auth::user()->fotoProfil)
+        <img src="{{ asset('storage/'.Auth::user()->fotoProfil) }}" alt="User Image" class="rounded-circle shadow" style="width: 100px; height: auto;">
+    @endif
     <div class="card shadow p-2">
         {{ Auth::user()->name }}
     </div>
@@ -21,6 +23,9 @@
         </a>
         <a href="{{ route('daftar.genre') }}" class="btn btn-info text-white text-start shadow-sm">
             <i class="fas fa-book me-2"></i> Genre
+        </a>
+        <a href="{{ route('halUpdate.profil') }}" class="btn btn-info text-white text-start shadow-sm">
+            <i class="fas fa-book me-2"></i> Update Profil
         </a>
     </div>
     <form action="{{ route('logout') }}" method="POST" class="w-100 px-3 mt-4">

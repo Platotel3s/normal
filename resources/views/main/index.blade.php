@@ -46,7 +46,7 @@
                                     <td>{{ $buku->genre->namaGenre ?? 'N/A' }}</td>
                                     <td>
                                         @if($buku->gambar)
-                                        <img src="{{ asset('storage/'.$buku->gambar) }}" alt="Gambar Buku" width="80">
+                                            <img src="{{ asset('storage/'.$buku->gambar) }}" alt="Gambar Buku" width="80">
                                         @else
                                         <span class="text-muted">Belum ada</span>
                                         @endif

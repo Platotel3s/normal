@@ -53,6 +53,9 @@
         Route::put('/genre/{id}/update',[GenreController::class,'update'])->name('update.genre');
 
         Route::get('/dashboard',[DashboardController::class,'statistik'])->name('statistik.dashboard');
+
+        Route::get('/gantiProfil',[AuthController::class,'halUpdateProfile'])->name('halUpdate.profil');
+        Route::put('/profil/update',[AuthController::class,'updateProfile'])->name('update.profil');
     });
 
 
