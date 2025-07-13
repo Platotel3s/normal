@@ -71,7 +71,7 @@ class AuthController extends Controller
             $data['password']=bcrypt($request->password);
         }
         if($request->hasFile('fotoProfil')){
-            $ext=$request->file('fotoProfil')->getOriginalExtension();
+            $ext=$request->file('fotoProfil')->getClientOriginalExtension();
             $namaFileFotoProfilBaru=now()->format('YmdHis').'.'.$ext;
             $fotoProfilPath=$request->file('fotoProfil')->storeAs('fotoProfil_users',$namaFileFotoProfilBaru,'public');
             $data['fotoProfil']=$fotoProfilPath;

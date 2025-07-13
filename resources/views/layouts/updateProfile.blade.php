@@ -9,13 +9,22 @@
                     <form action="{{ route('update.profil') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-
-                        <input type="text" name="name" value="{{ old('name', Auth::user()->name) }}" required class="form-control">
-                        <input type="email" name="email" value="{{ old('email', Auth::user()->email) }}" required class="form-control">
-
-                        <input type="password" name="password" placeholder="Ganti password (opsional)" class="form-control">
-                        <input type="password" name="password_confirmation" placeholder="Konfirmasi password" class="form-control">
-
+                        <div class="mb-3">
+                            <input type="text" name="name" value="{{ old('name', Auth::user()->name) }}" required class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" name="email" value="{{ old('email', Auth::user()->email) }}" required class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" name="password" placeholder="Ganti password (opsional)" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" name="password_confirmation" placeholder="Konfirmasi password" class="form-control">
+                            <small class="text-muted">Pastikan anda memasukkan konfirmasi password agar bisa update data</small>
+                        </div>
+                        <div class="mb-3">
+                            <input type="file" name="fotoProfil" id="fotoProfil" class="form-control">
+                        </div>
                         @if (Auth::user()->fotoProfil)
                         <div class="mb-3 text-center">
                             <img src="{{ asset('storage/' . Auth::user()->fotoProfil) }}" alt="Foto Profil" class="rounded-circle shadow" style="width: 100px; height: auto;">
