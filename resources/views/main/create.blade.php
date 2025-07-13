@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-5">
+            <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-header text-center">Masukkan buku baru</div>
                     <div class="card-Body">
@@ -22,7 +22,8 @@
                             </div>
                             <div class="mb-3 p-2">
                                 <label for="author_id" class="form-label">Author</label>
-                                <select name="author_id[]" id="author_id_select" class="form-control" multiple required>
+                                <select name="author_id[]" id="author_id_select" class="form-control select2" multiple required>
+                                    <option value="" disabled>-- Pilih Penulis --</option>
                                     @foreach ($authors as $author)
                                         <option value="{{ $author->id }}"
                                             {{ in_array($author->id, old('author_id', [])) ? 'selected' : '' }}>
@@ -30,7 +31,6 @@
                                         </option>
                                     @endforeach
                                 </select>
-
                                 <small class="text-muted">Tekan Ctrl (Windows) atau Cmd (Mac) untuk memilih lebih dari
                                     satu.</small>
                             </div>
