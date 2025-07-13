@@ -14,6 +14,7 @@ class Buku extends Model
         'penerbit_id',
         'tahun_id',
         'genre_id',
+        'gambar',
     ];
     public function author(){
         return $this->belongsTo(Author::class);

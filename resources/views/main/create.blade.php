@@ -63,7 +63,7 @@
                             </div>
                             <div class="mb-4">
                                 <label for="gambar" class="form-label">Gambar Buku</label>
-                                <input type="file" name="gambar" id="gambar" class="form-control">
+                                <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*">
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary mb-3">Tambah</button>
