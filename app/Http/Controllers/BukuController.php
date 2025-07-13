@@ -31,19 +31,27 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required|string',
-            'author_id' => 'required|array',
-            'author_id.*' => 'exists:authors,id',
-            'penerbit_id' => 'required|exists:penerbits,id',
-            'tahun_id' => 'required|exists:tahuns,id',
-            'genre_id' => 'required|exists:genres,id',
+            'judul'=>'required|string',
+            'author_id'=>'required|array',
+            'author_id.*'=>'exists:authors,id',
+            'penerbit_id'=>'required|exists:penerbits,id',
+            'tahun_id'=>'required|exists:tahuns,id',
+            'genre_id'=>'required|exists:genres,id',
+            'gambar'=>'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
+        $gambarPath=null;
+        if($request->hasFile('gambar')){
+            $ext=$request->file('gambar')->getClientOriginalExtension();
+            $namaFile=now()->format('YmdHis').'.'.$ext;
+            $gambarPath=$request->file('gambar')->storeAs('gambar_buku',$namaFile,'public');
+        }
         $bukus=Buku::create([
             'judul'=>$request->judul,
             'user_id'=>auth()->id(),
             'penerbit_id'=>$request->penerbit_id,
             'tahun_id'=>$request->tahun_id,
             'genre_id'=>$request->genre_id,
+            'gambar'=>$gambarPath,
         ]);
         $bukus->authors()->attach($request->author_id);
         return redirect()->route('daftar.buku')->with('success','Berhasil input data');
@@ -73,6 +81,12 @@ class BukuController extends Controller
             'genre_id'=>'required|exists:genres,id',
         ]);
         $bukus=Buku::findOrFail($id);
+        if($request->hasFile('gambar')){
+            $ext=$request->file('gambar')->getClientOriginalExtension();
+            $namaFile=now()->format('YmdHis').'.'.$ext;
+            $gambarPath=$request->file('gambar')->storeAs('gambar_buku',$namaFile,'public');
+            $bukus->update(['gambar'=>$gambarPath]);
+        }
         $bukus->update([
             'judul'=>$request->judul,
             'penerbit_id'=>$request->penerbit_id,
@@ -82,10 +96,6 @@ class BukuController extends Controller
         $bukus->authors()->sync($request->author_id);
         return redirect()->route('daftar.buku')->with('success','Berhasil update');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $bukus=Buku::findOrFail($id);

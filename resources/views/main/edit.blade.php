@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Edit Data Buku</div>
                     <div class="card-body">
-                        <form action="{{ route('update.buku', $bukus->id) }}" method="POST">
+                        <form action="{{ route('update.buku', $bukus->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-4">
@@ -62,6 +62,10 @@
                                         </option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="gambar" class="form-label">Gambar Buku</label>
+                                <input type="file" name="gambar" id="gambar" class="form-control">
                             </div>
                             <div class="d-grid gap-2 d-md-flex">
                                 <button type="submit" class="btn btn-primary">Update</button>

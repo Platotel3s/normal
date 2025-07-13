@@ -14,7 +14,7 @@
                                 </div>
                             @endif
                         </div>
-                        <form action="{{ route('store.buku') }}" method="POST">
+                        <form action="{{ route('store.buku') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3 p-2">
                                 <label for="judul" class="form-label">Judul</label>
@@ -60,6 +60,10 @@
                                         <option value="{{ $genre->id }}">{{ $genre->namaGenre }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="gambar" class="form-label">Gambar Buku</label>
+                                <input type="file" name="gambar" id="gambar" class="form-control">
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary mb-3">Tambah</button>
