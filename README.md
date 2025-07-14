@@ -59,6 +59,7 @@ php artisan serve
 
 ### 7. 📸 Screenshot
 
+<img src="example/Screenshot_20250714_081151.png">
 <img src="example/koleksiBuku.png">
 <img src="example/tambahBuku.png">
 <img src="example/editBuku.png">
