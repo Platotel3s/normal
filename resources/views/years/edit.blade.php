@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <form action="{{ route('update.years',$years->id) }}" method="POST">
                             @csrf
-                            @method('PUT')
+                            @method('PATCH')
                             <div class="mb-4">
                                 <label for="tahun" class="form-label">Tahun Rilis</label>
                                 <input type="number" name="tahun" id="tahun" value="{{ $years->tahun }}" required>

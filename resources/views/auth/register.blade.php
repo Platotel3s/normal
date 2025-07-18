@@ -20,13 +20,15 @@
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 position-relative">
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" required>
+                                    <i class="fas fa-eye position-absolute" id="togglePassword" style="top: 38px; right: 15px; cursor: pointer;"></i>
                                 </div>
                                 <div class="mb-4">
                                     <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
                                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                                    <i class="fas fa-eye position-absolute" id="togglePassword" style="top: 38px; right: 15px; cursor: pointer;"></i>
                                 </div>
                                 <div class="mb-3">
                                     <label for="fotoProfil" class="form-label">Foto Profil</label>
@@ -57,7 +59,17 @@
         , renderer: 'svg'
         , loop: true
         , autoplay: true
-        , path: '{{ asset('assets / register.json ') }}'
+        , path: '{{ asset('assets/register.json') }}'
+    , });
+
+    const passwordInput = document.getElementById('password');
+    const passwordToggle = document.getElementById('togglePassword');
+
+    passwordToggle.addEventListener('click', function() {
+       const type=passwordInput.type==='password'?'text':'password';
+       passwordInput.type=type;
+       this.classList.toggle('fa-eye');
+       this.classList.toggle('fa-eye-slash');
     });
 
 </script>

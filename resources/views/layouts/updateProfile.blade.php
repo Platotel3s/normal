@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <form action="{{ route('update.profil') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
+                        @method('PATCH')
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama Lengkap</label>
                             <input type="text" name="name" id="name" value="{{ old('name', Auth::user()->name) }}" required class="form-control">

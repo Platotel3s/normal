@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <form action="{{ route('update.author',$authors->id) }}" method="POST">
                             @csrf
-                            @method('PUT')
+                            @method('PATCH')
                             <div class="mb-4">
                                 <label for="namaPenulis" class="form-label">Nama Penulis</label>
                                 <input type="text" name="namaPenulis" id="namaPenulis" class="form-control" required value="{{ $authors->namaPenulis }}">

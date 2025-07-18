@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <form action="{{ route('update.penerbit',$publishers->id) }}" method="POST">
                             @csrf
-                            @method('PUT')
+                            @method('PATCH')
                             <div class="mb-4">
                                 <label for="namaPenerbit" class="form-label">Nama Penerbit</label>
                                 <input type="text" class="form-control" name="namaPenerbit" id="namaPenerbit" value="{{ $publishers->namaPenerbit }}" required>

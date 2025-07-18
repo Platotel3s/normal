@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <form action="{{ route('update.buku', $bukus->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
+                            @method('PATCH')
                             <div class="mb-4">
                                 <label for="judul" class="form-label">Judul</label>
                                 <input type="text" name="judul" id="judul" value="{{ $bukus->judul }}"
