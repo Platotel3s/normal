@@ -21,7 +21,7 @@ class AuthController extends Controller
         ]);
         $fotoProfilPath=null;
         if($request->hasFile('fotoProfil')){
-            $ext=$request->file('fotoProfil')->getOriginalExtension();
+            $ext=$request->file('fotoProfil')->getClientOriginalExtension();
             $namaFileFotoProfil=now()->format('YmdHis').'.'.$ext;
             $fotoProfilPath=$request->file('fotoProfil')->storeAs('fotoProfil_users',$namaFileFotoProfil,'public');
         }
