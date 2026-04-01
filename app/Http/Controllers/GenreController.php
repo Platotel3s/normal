@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Genre;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class GenreController extends Controller
 {
+    use AuthorizesRequests;
     public function index(Request $request)
     {
-        $query=Genre::query()->where('user_id',auth()->id());
+        $this->authorize('viewAny',Genre::class);
+        $query=Genre::query()->where('user_id',Auth::id());
         if($request->has('search') && $request->search != ''){
             $query->where('namaGenre','like','%'.$request->search.'%');
         }
@@ -22,23 +26,26 @@ class GenreController extends Controller
     }
     public function store(Request $request)
     {
+        $this->authorize('create',Genre::class);
         $request->validate([
             'namaGenre'=>'required',
         ]);
-        $gen=Genre::create([
+        Genre::create([
             'namaGenre'=>$request->namaGenre,
-            'user_id'=>auth()->id(),
+            'user_id'=>Auth::id(),
         ]);
         return redirect()->route('create.genre')->with('success','Berhasil menambah Genre');
     }
     public function show(string $id)
     {
         $gen=Genre::findOrFail($id);
+        $this->authorize('view',$gen);
         return view('gen.show',compact('gen'));
     }
     public function edit(string $id)
     {
         $gen=Genre::findOrFail($id);
+        $this->authorize('edit',$gen);
         return view('gen.edit',compact('gen'));
     }
     public function update(Request $request, string $id)
@@ -47,12 +54,14 @@ class GenreController extends Controller
             'namaGenre'=>'required',
         ]);
         $gen=Genre::findOrFail($id);
+        $this->authorize('update',$gen);
         $gen->update($request->all());
         return redirect()->route('daftar.genre');
     }
     public function destroy(string $id)
     {
         $gen=Genre::findOrFail($id);
+        $this->authorize('delete',$gen);
         $gen->delete();
         return redirect()->route('daftar.genre');
     }

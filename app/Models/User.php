@@ -53,4 +53,10 @@ class User extends Authenticatable
     public function authors(){
         return $this->haMany(Author::class);
     }
+    public function publishers(){
+        return $this->hasMany(Penerbit::class);
+    }
+    public function years(){
+        return $this->hasMany(Tahun::class);
+    }
 }

@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <form action="{{ route('update.genre',$gen->id) }}" method="POST">
                             @csrf
-                            @method('PUT')
+                            @method('PATCH')
                             <div class="mb-4">
                                 <label for="namaGenre" class="form-label">Nama Genre</label>
                                 <input type="text" name="namaGenre" id="namaGenre" class="form-control" value="{{ $gen->namaGenre }}" required>
